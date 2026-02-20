@@ -3,7 +3,7 @@ import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { router } from "expo-router";
-import { Button, Dialog, Portal, Text } from "react-native-paper";
+import { Button, Dialog, Portal, Text, IconButton } from "react-native-paper";
 
 export default function TabLayout() {
   const [showPinModal, setShowPinModal] = useState(false);
@@ -12,16 +12,19 @@ export default function TabLayout() {
     <>
       <Tabs
         screenOptions={{
-          tabBarPosition: "bottom",
-          tabBarActiveTintColor: "#16a34a", // active tab green
+          tabBarActiveTintColor: "#16a34a",
           tabBarInactiveTintColor: "gray",
-          tabBarStyle: {
-            backgroundColor: "white",
-          },
-          headerStyle: {
-            backgroundColor: "#16a34a", // header green
-          },
-          headerTintColor: "white", // header text white
+          tabBarStyle: { backgroundColor: "white" },
+          headerStyle: { backgroundColor: "#16a34a" },
+          headerTintColor: "white",
+          headerRight: () => (
+            <IconButton
+              icon="information-outline"
+              size={22}
+              iconColor="white"
+              onPress={() => router.push("/about")}
+            />
+          ),
         }}
       >
         <Tabs.Screen

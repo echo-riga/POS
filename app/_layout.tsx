@@ -1,6 +1,10 @@
 // app/_layout.tsx
-import { Stack } from "expo-router";
+import { Stack, router } from "expo-router";
 import { PaperProvider, MD3LightTheme } from "react-native-paper";
+import { setupDatabase } from "@/services/db";
+import { useEffect } from "react";
+import { TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 const theme = {
   ...MD3LightTheme,
   colors: {
@@ -11,6 +15,9 @@ const theme = {
 };
 
 export default function RootLayout() {
+  useEffect(() => {
+    setupDatabase();
+  }, []);
   return (
     <PaperProvider theme={theme}>
       <Stack
@@ -20,7 +27,13 @@ export default function RootLayout() {
           headerTitleStyle: { fontWeight: "bold" },
         }}
       >
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="(tabs)"
+          options={{
+            headerShown: false,
+            headerBackTitle: "",
+          }}
+        />
         <Stack.Screen
           name="checkout"
           options={{
@@ -44,6 +57,15 @@ export default function RootLayout() {
             animation: "slide_from_right",
             headerStyle: { backgroundColor: "#16a34a" },
             headerTintColor: "white",
+            headerBackVisible: false,
+            headerLeft: () => (
+              <TouchableOpacity
+                onPress={() => router.back()}
+                style={{ marginLeft: 4 }}
+              >
+                <Ionicons name="chevron-back" size={26} color="white" />
+              </TouchableOpacity>
+            ),
           }}
         />
         <Stack.Screen

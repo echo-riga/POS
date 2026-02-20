@@ -19,7 +19,7 @@ export default function AboutScreen() {
         <Row label="Version" value="1.0.0" />
         <Row label="Platform" value="React Native Expo" />
         <Row label="Database" value="SQLite (local)" />
-        <Row label="Developed by" value="Echo" />
+        <Row label="Developed by" value="Echo R." />
         <Row label="Year" value="2026" />
       </View>
     </View>
